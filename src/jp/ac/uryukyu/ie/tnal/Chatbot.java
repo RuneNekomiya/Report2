@@ -25,6 +25,7 @@ public class Chatbot {
         patterns = new ReplyPattern[dataset.length];
         this.botname = botname;
         for(int i = 0; i < dataset.length; i++) {
+            dataset[i] = dataset[i].replaceAll(" ", "");
             String[] get = dataset[i].split("\t");
             patterns[i] = new ReplyPattern(get[0], get[1]);
         }
@@ -58,7 +59,7 @@ public class Chatbot {
      */
     public void greeting(){
         int index = searchPattern("greeting");
-        System.out.println(botname + "「" + patterns[index].reply + "」");
+        System.out.println(patterns[index].reply);
     }
 
     /**
@@ -68,7 +69,7 @@ public class Chatbot {
      */
     public String reply(String pattern){
         int index = searchPattern(pattern);
-        String message = botname + "「" + patterns[index].reply + "」";
+        String message = patterns[index].reply;
         return message;
     }
 }
